@@ -1,9 +1,10 @@
 from flask import Flask, jsonify, redirect, render_template, request
 from flask_cors import CORS
 from werkzeug.exceptions import BadRequest, NotFound, InternalServerError
+import os
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-import os
+
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL').replace("://", "ql://", 1)
