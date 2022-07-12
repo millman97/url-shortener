@@ -12,6 +12,8 @@ autopep8 = "*"
 [packages]
 flask = "*"
 flask-cors = "*"
+flask-sqlalchemy = "*"
+flask-migrate = "*"
 
 [requires]
 python_version = "3"
