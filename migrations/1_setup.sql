@@ -1,0 +1,6 @@
+DROP TABLE IF EXISTS links;
+
+CREATE TABLE links (
+    id BINARY(8) PRIMARY KEY,
+    link VARCHAR(250) UNIQUE
+    );
