@@ -8,6 +8,7 @@ pytest-cov = "*"
 pytest = "*"
 pep8 = "*"
 autopep8 = "*"
+python-dotenv = "*"
 
 [packages]
 flask = "*"
