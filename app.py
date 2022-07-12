@@ -9,7 +9,7 @@ CORS(app)
 def home():
     return render_template('home.html', title='Home')
 
-@app.route('/<int:page_id>')
+@app.route('/<page_id>')
 def redirect_to_link():
     pass
 
@@ -17,7 +17,7 @@ def redirect_to_link():
 def get_all_links():
     pass
 
-@app.route('/api/<int:page_id>',  methods=['Get'])
+@app.route('/api/<page_id>',  methods=['Get'])
 def get_link():
     pass
 
