@@ -1,35 +1,32 @@
-@font-face {
-    font-family: legoh;
-    src: url('../fonts/Legothick.ttf');
-    font-weight: bold;
-}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&family=Montserrat+Subrayada&display=swap');
 
-@font-face {
-    font-family: register;
-    src: url('../fonts/REGISTER.TTF');
-    font-weight: bold;
-}
+
 
 * { box-sizing: border-box; }
 
 body, html { width: 100%; height: 100%; margin: 0;}
 
 body {
-    font-family: legoh;
-    text-transform: uppercase;
+    font-family: 'Montserrat Alternates', sans-serif;
     text-align: center;
 }
 
+.mb-3{
+    margin-bottom: 1rem;
+}
+
 :root {
-    --p-yellow: rgba(246, 228, 153);
-    --p-blue: rgba(170,192,200);
-    --p-green: rgba(228,233,197);
-    --p-red: rgba(229,103,98);
-    --a-red: rgba(233,56,28);
-    --p-grey: rgba(231,230,231);
+    --p-off-white: #F8F9FA;
+    --p-dark-blue: #002746;
+    --p-light-blue: #1599B3;
+    --p-blue-inactive: #087DA8;
+    --p-blue-active: #10BDE5;
+    --p-green: #1F8244;
+    --p-green-active: #186334;
 }
 
 nav { 
+    font-family: 'Montserrat Subrayada', sans-serif;
     width: 100%;
     font-size: 2em;
     display: flex;
@@ -41,10 +38,8 @@ a {
     padding: 10px;
 }
 
-nav a { width: 100%; color: var(--p-red);}
-nav a:hover { color: var(--a-red)}
-nav a:nth-child(odd) { background-color: var(--p-green); }
-nav a:nth-child(even) { background-color: var(--p-yellow); }
+nav a { width: 100%; color: white; background-color: var(--p-dark-blue);}
+nav a:hover { color: var(--p-blue-active);}
 
 main {
     display: block;
@@ -56,7 +51,7 @@ main {
 
 main::after {
     content: "";
-    background-image: url('../img/lego-banner.webp');
+    background-color: var(--p-light-blue);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
@@ -71,11 +66,11 @@ main::after {
 
 footer {
     position: fixed;
-    color: var(--p-red);
+    color: white;
     bottom: 0;
     width: 100%;
     padding: 10px;
-    background-color: var(--p-blue);
+    background-color: var(--p-dark-blue);
 }
 
 #about a { padding: 0; }
