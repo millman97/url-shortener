@@ -15,11 +15,12 @@
             </span>
          </button>
      </form>
-      <button class="pushable green">
+      <button id="copy-to-clipboard" class="pushable green">
          <span class="front green">
             Copy Link
          </span>
       </button>
    </div>
 </div>
+<script src="{{ url_for('static', filename='/js/clipboard.js') }}"></script>
 {% endblock %}
