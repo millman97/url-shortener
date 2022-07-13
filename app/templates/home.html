@@ -3,14 +3,15 @@
 
 {% block content %}
 <div class="container">
-    <h2>Enter URL you would like to shorten!</h2>
-        <form action="{{url_for('all_links')}}" method="POST">
-            <div class="mb-3">
-                <label for="link" class="form-label">Enter URL</label>
-                <input type="text" class="form-control" id="link" name="link" aria-describedby="link_input">
-            </div>
-            <button type="submit" class="btn btn-primary me-1 col-2">Submit</button>
-        </form>
+    <form action="{{url_for('all_links')}}" method="POST">
+        <label for="link" class="form-label">
+            <h2>Enter the URL you would like to shorten!</h2>
+        </label>
+        <br>
+        <input type="text" class="form-control" id="link" name="link" aria-describedby="link_input">
+        <br>
+        <button type="submit" class="btn btn-primary me-1 col-2" style="display: none;">Submit</button>
+    </form>
 </div>
 
 {% endblock %}
