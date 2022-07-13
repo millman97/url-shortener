@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS links;
 
 CREATE TABLE links (
-    id BINARY(8) PRIMARY KEY,
-    link VARCHAR(250) UNIQUE
+    id serial PRIMARY KEY,
+    link VARCHAR(60000) UNIQUE,
+    uid VARCHAR(8) UNIQUE
     );

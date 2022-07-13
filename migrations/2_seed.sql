@@ -1,2 +1,2 @@
-INSERT INTO links (id,link)
-VALUES ('1','www.google.com' )
+INSERT INTO links (link,uid)
+VALUES ('https://www.postgresql.org/docs/14/pgcrypto.html','jUj23ixU' );

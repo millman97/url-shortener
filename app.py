@@ -23,9 +23,9 @@ def catch_all(path):
     print("path accessed:", path)
     return render_template('home.html', title='Home')
 
-@app.route('/<page_id>')
-def redirect_to_link():
-    pass
+# @app.route('/<page_id>')
+# def redirect_to_link():
+#     pass
 # need handling for incorrect id
 
 @app.route('/link', methods=['Get', 'Post'])
@@ -36,10 +36,8 @@ def all_links():
         url_id = shorten()
         return render_template('result.html', your_url=your_url, url_id=url_id, title='Result')
     if request.method == "GET":
-        # resp, code = fns[request.method](request)
-        # return jsonify(resp), code
-        pass
-    pass
+        resp, code = fns[request.method](request)
+        return jsonify(resp), code
 
 @app.route('/link/<page_id>',  methods=['Get', 'Delete'])
 def link_by_id():
@@ -73,6 +71,7 @@ class Links(db.Model):
     __tablename__ = 'links'
 
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    uid = db.Column(db.String())
     link = db.Column(db.String())
 
     def __init__(self,link):
@@ -82,8 +81,14 @@ class Links(db.Model):
         return f"{self.id} - {self.name}"
 
 ## Controllers ************************************************************************************
-def index():
-    pass
+def index(req):
+    links = db.session.query(Links).all()
+    results = [{
+        "id":link.id,
+        "uid": link.uid,
+        "link": link.link
+    } for link in links]
+    return results, 200
 
 def create():
     pass
