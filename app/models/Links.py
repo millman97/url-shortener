@@ -29,15 +29,23 @@ class Links(db.Model):
 
     def create(req):
         your_url = request.form['link']
-        url_id = Links.shorten()
-        new_record = Links(your_url, url_id)
-        db.session.add(new_record)
-        db.session.commit()
-        results = {
-            "your_url":your_url,
-            "url_id":heroku_url + url_id
-            }
-        return results, 201
+        if db.session.query(Links).filter_by(link=your_url).first():
+            q = db.session.query(Links).filter_by(link=your_url).first()
+            results = {
+                "your_url":your_url,
+                "url_id":heroku_url + q.uid
+                }
+            return results, 200 
+        else:
+            url_id = Links.shorten()
+            new_record = Links(your_url, url_id)
+            db.session.add(new_record)
+            db.session.commit()
+            results = {
+                "your_url":your_url,
+                "url_id":heroku_url + url_id
+                }
+            return results, 201
 
     def shorten() -> str:
         links = db.session.query(Links).all()
