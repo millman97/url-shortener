@@ -3,7 +3,7 @@
   <img alt="logo" src="https://i.imgur.com/euVUyOO.png" />
   </a>
   <br>
-  *Shorten: A simple app that shortens URLs.*
+  Shorten: A simple way to shorten URLs
 </p>
 
 ---
