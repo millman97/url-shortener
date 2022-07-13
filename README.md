@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="logo" src="[http://some_place.com/image.png](https://i.imgur.com/euVUyOO.png)" />
+  <img alt="logo" src="https://i.imgur.com/euVUyOO.png" />
 </p>
 
 # Shorten
