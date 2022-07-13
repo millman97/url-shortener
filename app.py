@@ -27,7 +27,7 @@ def redirect_to_link():
     pass
 # need handling for incorrect id
 
-@app.route('/api', methods=['Get', 'Post'])
+@app.route('/link', methods=['Get', 'Post'])
 def all_links():
     fns = {"GET": index, "POST": create}
     if request.method == "POST":
@@ -40,7 +40,7 @@ def all_links():
         pass
     pass
 
-@app.route('/api/<page_id>',  methods=['Get', 'Delete'])
+@app.route('/link/<page_id>',  methods=['Get', 'Delete'])
 def link_by_id():
     fns = {"GET": index, "DELETE": destroy}
     if request.method == "GET":
