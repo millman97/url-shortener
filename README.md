@@ -6,7 +6,7 @@
 
 ---
 
-# Usage
+## Usage
 
 Deployed on Heroku: https://url-is-short.herokuapp.com/
 
