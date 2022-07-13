@@ -28,14 +28,9 @@ def redirect_to_link(page_id):
 
 @app.route('/link', methods=['Get', 'Post'])
 def all_links():
-    fns = {"GET": index}
+    fns = {"GET": index, "POST": create}
     if request.method == "POST":
-        your_url = request.form['link']
-        url_id = shorten()
-        new_record = Links(your_url, url_id)
-        db.session.add(new_record)
-        db.session.commit()
-        return render_template('result.html', your_url=your_url, url_id=url_id, title='Result')
+        return fns[request.method](request)
     if request.method == "GET":
         resp, code = fns[request.method](request)
         return jsonify(resp), code
@@ -80,6 +75,13 @@ def index(req):
     } for link in links]
     return results, 200
 
+def create(request):
+    your_url = request.form['link']
+    url_id = shorten()
+    new_record = Links(your_url, url_id)
+    db.session.add(new_record)
+    db.session.commit()
+    return render_template('result.html', your_url=your_url, url_id=url_id, title='Result')
 
 ## Other Functions ************************************************************************************
 def shorten() -> str:
