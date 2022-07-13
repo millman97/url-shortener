@@ -7,5 +7,19 @@
 <div class="container">
    <p>URL Entered: <a href="{{your_url}}">{{your_url}}</a></p>
    <p>URL Shortened: <a href="{{url_id}}">{{url_id}}</a></p>
+   <div class="resultsBtns">
+      <form style="display: inline" action="/">
+         <button type="submit" class="pushable">
+            <span class="front">
+               Home
+            </span>
+         </button>
+     </form>
+      <button class="pushable green">
+         <span class="front green">
+            Copy Link
+         </span>
+      </button>
+   </div>
 </div>
 {% endblock %}

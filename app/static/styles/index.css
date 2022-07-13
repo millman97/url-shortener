@@ -2,13 +2,21 @@
 
 
 
-* { box-sizing: border-box; }
+* {
+    box-sizing: border-box;
+}
 
-body, html { width: 100%; height: 100%; margin: 0;}
+body,
+html {
+    width: 100%;
+    height: 90%;
+    margin: 0;
+}
 
 body {
     font-family: 'Montserrat Alternates', sans-serif;
     text-align: center;
+    background-color: var(--p-off-white);
 }
 
 :root {
@@ -21,7 +29,7 @@ body {
     --p-green-active: #186334;
 }
 
-nav { 
+nav {
     font-family: 'Montserrat Subrayada', sans-serif;
     width: 100%;
     font-size: 2em;
@@ -29,49 +37,90 @@ nav {
     justify-content: space-evenly;
 }
 
-a { 
+a {
     text-decoration: none;
     padding: 10px;
 }
 
-nav a { width: 100%; color: white; background-color: var(--p-dark-blue);}
-nav a:hover { color: var(--p-blue-active);}
+nav a {
+    width: 100%;
+    color: white;
+    background-color: var(--p-dark-blue);
+}
+
+nav a:hover {
+    color: var(--p-blue-active);
+}
 
 main {
     display: block;
     position: relative;
-    height: 70%;
+    height: 100%;
     width: 100%;
 }
 
 footer {
     position: fixed;
-    color: white;
+    color: var(--p-off-white);
     bottom: 0;
     width: 100%;
     padding: 10px;
     background-color: var(--p-dark-blue);
 }
 
-#about a { padding: 0; }
-#about { text-align: justify; padding: 1rem; max-width: 350px; margin: 0 auto;}
-#thankyou { text-align: center; }
-
-p, span, input {
-    font-family: register;
+p,
+span,
+input {
+    font-family: 'Montserrat Alternates', sans-serif;
+    color: var(--p-dark-blue);
+    font-size: xx-large;
 }
 
-.form-control{
+.form-control {
+    font-family: 'Montserrat Alternates', sans-serif;
     display: inline-block;
     width: 60vw;
-    height:10vh;
+    height: 10vh;
     padding: 25px 20px 25px 20px;
     font-size: 30px;
     border-radius: 50px;
+    background-color: var(--p-off-white);
 }
 
-.container{
+.container {
     position: relative;
     top: 40%;
     align-items: center;
+}
+
+.pushable {
+    background: var(--p-blue-inactive);
+    border-radius: 12px;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline-offset: 4px;
+    margin-top: 2.5vh;
+}
+
+.front {
+    display: block;
+    padding: 12px 42px;
+    border-radius: 12px;
+    font-size: 1.25rem;
+    background: var(--p-blue-active);
+    color: var(--p-off-white);
+    transform: translateY(-6px);
+}
+
+.pushable:active .front {
+    transform: translateY(-2px);
+}
+
+.pushable.green {
+    background: #186334 !important;
+}
+
+.green .front {
+    background: #1F8244 !important;
 }
