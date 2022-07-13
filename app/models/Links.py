@@ -2,7 +2,8 @@ from flask import request
 from app.database import db
 from secrets import token_urlsafe
 
-## Model ******************************************************************************************
+heroku_url = 'https://url-is-short.herokuapp.com/'
+
 class Links(db.Model):
     __tablename__ = 'links'
 
@@ -34,7 +35,7 @@ class Links(db.Model):
         db.session.commit()
         results = {
             "your_url":your_url,
-            "url_id":url_id
+            "url_id":heroku_url + url_id
             }
         return results, 201
 
