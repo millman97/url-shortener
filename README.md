@@ -3,7 +3,7 @@
   <img alt="logo" src="https://i.imgur.com/euVUyOO.png" />
   </a>
   <br>
-  <i>Shorten: A simple way to shorten URLs</i>
+  <i>A simple way to shorten URLs</i>
 </p>
 
 ---
