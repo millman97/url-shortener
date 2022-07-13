@@ -29,27 +29,9 @@ body {
     --p-green-active: #186334;
 }
 
-nav {
-    font-family: 'Montserrat Subrayada', sans-serif;
-    width: 100%;
-    font-size: 2em;
-    display: flex;
-    justify-content: space-evenly;
-}
-
 a {
     text-decoration: none;
     padding: 10px;
-}
-
-nav a {
-    width: 100%;
-    color: white;
-    background-color: var(--p-dark-blue);
-}
-
-nav a:hover {
-    color: var(--p-blue-active);
 }
 
 main {
@@ -101,7 +83,7 @@ input {
     padding: 0;
     cursor: pointer;
     outline-offset: 4px;
-    margin-top: 2.5vh;
+    margin: 2.5vh;
 }
 
 .front {
