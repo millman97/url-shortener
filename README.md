@@ -20,7 +20,7 @@ pipenv install
 pipenv run dev
 ``` 
 
-*Note: you will not be able to access the live database without credentials, so you will have to get your own. Use setup files located in the migrations folder to create the table and seed data'
+*Note: you will not be able to access the live database without credentials, so you will have to get your own. Use setup files located in the migrations folder to create the table and seed data*
 
 ### Requirements:
 - python (reccomend 3.10.x)
