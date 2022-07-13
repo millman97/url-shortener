@@ -5,7 +5,9 @@
 
 {% block content %}
 <div class="container">
-   <p>URL Entered: <a href="{{your_url}}">{{your_url}}</a></p>
-   <p>URL Shortened: <a href="{{url_id}}">{{url_id}}</a></p>
+   <p >URL Entered: <a id="long-url-text" href="{{your_url}}">{{your_url}}</a></p>
+   <p >URL Shortened: <a id="short-url-text" href="{{url_id}}">{{url_id}}</a></p>
+   <button id="copy-to-clipboard" >Copy to Clipboard</button>
 </div>
+<script src="{{ url_for('static', filename='/js/clipboard.js') }}"></script>
 {% endblock %}
