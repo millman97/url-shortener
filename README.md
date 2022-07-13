@@ -2,9 +2,9 @@
   <img alt="logo" src="https://i.imgur.com/euVUyOO.png" />
 </p>
 
-# Shorten
+---
 
-## Usage
+# Usage
 
 Deployed on Heroku: https://url-is-short.herokuapp.com/
 
