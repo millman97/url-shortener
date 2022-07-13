@@ -30,23 +30,11 @@ def redirect_to_link(page_id):
 def all_links():
     fns = {"GET": index, "POST": create}
     if request.method == "POST":
-        create()
-        return render_template('result.html', your_url=your_url, url_id=url_id, title='Result')
+        resp, code = fns[request.method](request)
+        return render_template('result.html', your_url=resp[0]['your_url'], url_id=resp[0]['url_id'], title='Result')
     if request.method == "GET":
         resp, code = fns[request.method](request)
         return jsonify(resp), code
-
-@app.route('/link/<page_id>',  methods=['Get', 'Delete'])
-def link_by_id():
-    fns = {"GET": index, "DELETE": destroy}
-    if request.method == "GET":
-        # resp, code = fns[request.method](request)
-        # return jsonify(resp), code
-        pass
-    if request.method == "DELETE":
-        # resp, code = fns[request.method](request)
-        # return jsonify(resp), code
-        pass
 
 @app.errorhandler(NotFound)
 def handle_404(err):
@@ -89,10 +77,23 @@ class Links(db.Model):
 
     def create(req):
         your_url = request.form['link']
-        url_id = shorten()
+        url_id = Links.shorten()
         new_record = Links(your_url, url_id)
         db.session.add(new_record)
         db.session.commit()
+        results = {
+            "your_url":your_url,
+            "url_id":url_id
+            }
+        return results, 201
+
+    def shorten() -> str:
+        links = db.session.query(Links).all()
+        ext = token_urlsafe(5)
+        if ext in links:
+            return Links.shorten()
+        else:
+            return ext
 
 ## Controllers ************************************************************************************
 def index(req):
@@ -100,13 +101,5 @@ def index(req):
     return results, 200
 
 def create(req):
-    Links.create()
-
-## Other Functions ************************************************************************************
-def shorten() -> str:
-    links = db.session.query(Links).all()
-    ext = token_urlsafe(5)
-    if ext in links:
-        return shorten()
-    else:
-        return ext
+    results = Links.create(req)
+    return results, 201
