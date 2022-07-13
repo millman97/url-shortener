@@ -28,7 +28,7 @@ def redirect_to_link(page_id):
 
 @app.route('/link', methods=['Get', 'Post'])
 def all_links():
-    fns = {"GET": index, "POST": create}
+    fns = {"GET": index}
     if request.method == "POST":
         your_url = request.form['link']
         url_id = shorten()
@@ -39,18 +39,6 @@ def all_links():
     if request.method == "GET":
         resp, code = fns[request.method](request)
         return jsonify(resp), code
-
-@app.route('/link/<page_id>',  methods=['Get', 'Delete'])
-def link_by_id():
-    fns = {"GET": index, "DELETE": destroy}
-    if request.method == "GET":
-        # resp, code = fns[request.method](request)
-        # return jsonify(resp), code
-        pass
-    if request.method == "DELETE":
-        # resp, code = fns[request.method](request)
-        # return jsonify(resp), code
-        pass
 
 @app.errorhandler(NotFound)
 def handle_404(err):
@@ -91,12 +79,6 @@ def index(req):
         "link": link.link
     } for link in links]
     return results, 200
-
-def create():
-    pass
-
-def destroy():
-    pass
 
 
 ## Other Functions ************************************************************************************
