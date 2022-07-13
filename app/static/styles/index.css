@@ -91,6 +91,7 @@ input {
     position: relative;
     top: 40%;
     align-items: center;
+    font-weight: bold;
 }
 
 .pushable {
