@@ -1,3 +1,6 @@
-# URL Shortener
+# Shorten
 
-Deployed: https://url-is-short.herokuapp.com/
+![https://url-is-short.herokuapp.com/](https://imgur.com/euVUyOO)
+
+Deployed on Heroku: https://url-is-short.herokuapp.com/
+
