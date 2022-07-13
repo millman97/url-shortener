@@ -2,11 +2,11 @@
   <a href="https://url-is-short.herokuapp.com/">
   <img alt="logo" src="https://i.imgur.com/euVUyOO.png" />
   </a>
+  <br>
+  *Shorten: A simple app that shortens URLs.*
 </p>
 
 ---
-
-A simple app that shortens URLs.
 
 ## Usage
 
