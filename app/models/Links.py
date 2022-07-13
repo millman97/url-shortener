@@ -2,14 +2,16 @@ from flask import request
 from app.database import db
 from secrets import token_urlsafe
 
+# HARDCODED URL FOR DEPLOYMENT
+# Used in generating endpoint links!!!
 heroku_url = 'https://url-is-short.herokuapp.com/'
 
 class Links(db.Model):
     __tablename__ = 'links'
 
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    uid = db.Column(db.String())
     link = db.Column(db.String())
+    uid = db.Column(db.String())
 
     def __init__(self,link,uid):
         self.link = link
@@ -18,15 +20,17 @@ class Links(db.Model):
     def __repr__(self):
         return f"{self.link}"
 
+    # Lookup All Links
     def index(req):
         links = db.session.query(Links).all()
         results = [{
             "id":link.id,
-            "uid": link.uid,
-            "link": link.link
+            "link": link.link,
+            "uid": link.uid
         } for link in links]
         return results, 200
 
+    # Create New Link
     def create(req):
         your_url = request.form['link']
         if not your_url.startswith("https://") or your_url.startswith("http://"):
@@ -51,6 +55,7 @@ class Links(db.Model):
         results['link_total'] = len(db.session.query(Links).all())
         return results, status
 
+    # Function used to generate endpoint for new links
     def shorten() -> str:
         links = db.session.query(Links).all()
         ext = token_urlsafe(5)

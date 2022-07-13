@@ -12,17 +12,18 @@ def catch_all(path):
     print("path accessed:", path)
     return render_template('home.html', title='Home')
 
+# Redirect to url associated with uid
 @app.route('/<page_id>')
 def redirect_to_link(page_id):
     the_link = db.session.query(Links).filter_by(uid=page_id).first()
     return redirect(the_link.link, code=302, Response=None)
 
+# Get all json / Post new link
 @app.route('/link', methods=['Get', 'Post'])
 def all_links():
     fns = {"GET": index, "POST": create}
     if request.method == "POST":
         resp, code = fns[request.method](request)
-        print(resp)
         return render_template(
             'result.html', 
             your_url=resp[0]['your_url'], 
@@ -34,6 +35,7 @@ def all_links():
         resp, code = fns[request.method](request)
         return jsonify(resp), code
 
+# Error Handling Redirects
 @app.errorhandler(NotFound)
 def handle_404(err):
     return render_template('errors/404.html', title='Oops!'), 404
