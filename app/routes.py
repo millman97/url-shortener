@@ -22,7 +22,14 @@ def all_links():
     fns = {"GET": index, "POST": create}
     if request.method == "POST":
         resp, code = fns[request.method](request)
-        return render_template('result.html', your_url=resp[0]['your_url'], url_id=resp[0]['url_id'], title='Result')
+        print(resp)
+        return render_template(
+            'result.html', 
+            your_url=resp[0]['your_url'], 
+            url_id=resp[0]['url_id'], 
+            link_total=resp[0]['link_total'], 
+            title='Result'
+            )
     if request.method == "GET":
         resp, code = fns[request.method](request)
         return jsonify(resp), code

@@ -35,7 +35,7 @@ class Links(db.Model):
                 "your_url":your_url,
                 "url_id":heroku_url + q.uid
                 }
-            return results, 200 
+            status = 200 
         else:
             url_id = Links.shorten()
             new_record = Links(your_url, url_id)
@@ -45,7 +45,9 @@ class Links(db.Model):
                 "your_url":your_url,
                 "url_id":heroku_url + url_id
                 }
-            return results, 201
+            status = 201
+        results['link_total'] = len(db.session.query(Links).all())
+        return results, status
 
     def shorten() -> str:
         links = db.session.query(Links).all()
