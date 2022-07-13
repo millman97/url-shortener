@@ -11,6 +11,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL').replace("
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
+
 CORS(app)
 
 ## Routes *****************************************************************************************
@@ -30,8 +31,9 @@ def catch_all(path):
 def all_links():
     fns = {"GET": index, "POST": create}
     if request.method == "POST":
-        # "link": request.form["link"]
-        pass
+        your_url = request.form['link']
+        url_id = 'somerandomid'
+        return render_template('result.html', your_url=your_url, url_id=url_id, title='Result')
     if request.method == "GET":
         resp, code = fns[request.method](request)
         return jsonify(resp), code
