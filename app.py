@@ -4,6 +4,7 @@ from werkzeug.exceptions import BadRequest, NotFound, InternalServerError
 import os
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from secrets import token_urlsafe
 
 app = Flask(__name__)
 
@@ -32,7 +33,7 @@ def all_links():
     fns = {"GET": index, "POST": create}
     if request.method == "POST":
         your_url = request.form['link']
-        url_id = 'somerandomid'
+        url_id = shorten()
         return render_template('result.html', your_url=your_url, url_id=url_id, title='Result')
     if request.method == "GET":
         # resp, code = fns[request.method](request)
@@ -89,3 +90,10 @@ def create():
 
 def destroy():
     pass
+
+def shorten() -> str:
+    ext = token_urlsafe(5)
+    if ext in db:
+        return shorten()
+    else:
+        return ext
