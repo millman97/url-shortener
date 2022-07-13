@@ -3,7 +3,6 @@ from flask_cors import CORS
 from werkzeug.exceptions import BadRequest, NotFound, InternalServerError
 import os
 from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
 from secrets import token_urlsafe
 
 app = Flask(__name__)
@@ -11,7 +10,6 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL').replace("://", "ql://", 1)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
-migrate = Migrate(app, db)
 
 CORS(app)
 
@@ -23,10 +21,10 @@ def catch_all(path):
     print("path accessed:", path)
     return render_template('home.html', title='Home')
 
-# @app.route('/<page_id>')
-# def redirect_to_link():
-#     pass
-# need handling for incorrect id
+@app.route('/<page_id>')
+def redirect_to_link(page_id):
+    the_link = db.session.query(Links).filter_by(uid=page_id).first()
+    return redirect(the_link.link, code=302, Response=None)
 
 @app.route('/link', methods=['Get', 'Post'])
 def all_links():
@@ -34,6 +32,9 @@ def all_links():
     if request.method == "POST":
         your_url = request.form['link']
         url_id = shorten()
+        new_record = Links(your_url, url_id)
+        db.session.add(new_record)
+        db.session.commit()
         return render_template('result.html', your_url=your_url, url_id=url_id, title='Result')
     if request.method == "GET":
         resp, code = fns[request.method](request)
@@ -74,11 +75,12 @@ class Links(db.Model):
     uid = db.Column(db.String())
     link = db.Column(db.String())
 
-    def __init__(self,link):
+    def __init__(self,link,uid):
         self.link = link
+        self.uid = uid
     
     def __repr__(self):
-        return f"{self.id} - {self.name}"
+        return f"{self.link}"
 
 ## Controllers ************************************************************************************
 def index(req):
@@ -96,9 +98,12 @@ def create():
 def destroy():
     pass
 
+
+## Other Functions ************************************************************************************
 def shorten() -> str:
+    links = db.session.query(Links).all()
     ext = token_urlsafe(5)
-    if ext in db:
+    if ext in links:
         return shorten()
     else:
         return ext
