@@ -29,6 +29,8 @@ class Links(db.Model):
 
     def create(req):
         your_url = request.form['link']
+        if not your_url.startswith("https://") or your_url.startswith("http://"):
+            your_url = "http://" + your_url
         if db.session.query(Links).filter_by(link=your_url).first():
             q = db.session.query(Links).filter_by(link=your_url).first()
             results = {
