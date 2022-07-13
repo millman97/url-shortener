@@ -30,11 +30,7 @@ def redirect_to_link(page_id):
 def all_links():
     fns = {"GET": index, "POST": create}
     if request.method == "POST":
-        your_url = request.form['link']
-        url_id = shorten()
-        new_record = Links(your_url, url_id)
-        db.session.add(new_record)
-        db.session.commit()
+        create()
         return render_template('result.html', your_url=your_url, url_id=url_id, title='Result')
     if request.method == "GET":
         resp, code = fns[request.method](request)
@@ -82,22 +78,29 @@ class Links(db.Model):
     def __repr__(self):
         return f"{self.link}"
 
+    def index(req):
+        links = db.session.query(Links).all()
+        results = [{
+            "id":link.id,
+            "uid": link.uid,
+            "link": link.link
+        } for link in links]
+        return results, 200
+
+    def create(req):
+        your_url = request.form['link']
+        url_id = shorten()
+        new_record = Links(your_url, url_id)
+        db.session.add(new_record)
+        db.session.commit()
+
 ## Controllers ************************************************************************************
 def index(req):
-    links = db.session.query(Links).all()
-    results = [{
-        "id":link.id,
-        "uid": link.uid,
-        "link": link.link
-    } for link in links]
+    results = Links.index(req)
     return results, 200
 
-def create():
-    pass
-
-def destroy():
-    pass
-
+def create(req):
+    Links.create()
 
 ## Other Functions ************************************************************************************
 def shorten() -> str:
