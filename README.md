@@ -2,11 +2,13 @@
   <a href="https://url-is-short.herokuapp.com/">
   <img alt="logo" src="https://i.imgur.com/euVUyOO.png" />
   </a>
+  <br>
+  <i>A simple way to shorten URLs</i>
 </p>
 
 ---
 
-# Usage
+## Usage
 
 Deployed on Heroku: https://url-is-short.herokuapp.com/
 
@@ -20,7 +22,10 @@ pipenv install
 pipenv run dev
 ``` 
 
-*Note: you will not be able to access the live database without credentials, so you will have to get your own. Use setup files located in the migrations folder to create the table and seed data'
+*Note: you will not be able to access the live database without credentials, so you will have to get your own!*
+#### db setup
+- add a .env file with your postgres DATABASE_URL
+- Use setup files located in the migrations folder to create the table and seed data*
 
 ### Requirements:
 - python (reccomend 3.10.x)
