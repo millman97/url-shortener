@@ -6,6 +6,8 @@
 
 ---
 
+A simple app that shortens URLs.
+
 ## Usage
 
 Deployed on Heroku: https://url-is-short.herokuapp.com/
